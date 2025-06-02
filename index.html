@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITRAQ - Marga Selection</title>
+    <link rel="icon" href="https://qu.ax/XhmBP.jpeg" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #ff6b6b;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #6c5ce7);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('example.jpg') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo i {
+            margin-right: 15px;
+            color: var(--secondary);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            min-width: 150px;
+        }
+        
+        .stat-box h3 {
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .stat-box p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(74, 107, 255, 0.3);
+        }
+        
+        .btn:hover {
+            background: #3a5bef;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 107, 255, 0.4);
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-whatsapp:hover {
+            background: #20bd5a;
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .rules-list {
+            list-style-type: none;
+        }
+        
+        .rules-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .rules-list i {
+            color: var(--secondary);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .admin-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        
+        .admin-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .admin-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .admin-info {
+            padding: 1.2rem;
+        }
+        
+        .admin-info h3 {
+            margin-bottom: 0.3rem;
+            color: var(--dark);
+        }
+        
+        .admin-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin-top: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .audio-player h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        audio {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .download-btn {
+            margin-top: 1rem;
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .stat-box {
+                min-width: 120px;
+                padding: 0.8rem 1rem;
+            }
+            
+            .stat-box h3 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            .admin-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .admin-img {
+                height: 150px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats {
+                gap: 1rem;
+            }
+            
+            .stat-box {
+                min-width: calc(50% - 1rem);
+            }
+            
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-users"></i>
+                <span>CITRAQ</span>
+            </div>
+            <p class="tagline">Marga Selection Community</p>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <h3 id="memberCount">0</h3>
+                    <p>Members</p>
+                </div>
+                <div class="stat-box">
+                    <h3>5</h3>
+                    <p>Admins</p>
+                </div>
+                <div class="stat-box">
+                    <h3>85%</h3>
+                    <p>Active</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="about">
+            <h2>About CITRAQ</h2>
+            <p>CITRAQ adalah marga khusus untuk para editor JJ (Jedag-Jedug) di Alight Motion. Kami terbuka untuk siapa pun yang punya skill editing — baik pemula maupun yang sudah berpengalaman.</p>
+            <p>Kami menerima editor yang bisa ngedit, bukan yang cuma ngaku-ngaku bisa.
+Kalau kamu punya karya, tunjukkan! Kami nilai dari hasil, bukan omongan.</p>
+            
+            <a href="https://chat.whatsapp.com/CXTRLxrCKXUHkkn2QfLdfl" class="btn btn-whatsapp" style="margin-top: 1.5rem;">
+                <i class="fab fa-whatsapp"></i> Sleksi via WhatsApp
+            </a>
+        </section>
+        
+        <section id="rules">
+            <h2>Personal Rules</h2>
+            <ul class="rules-list">
+                <li>
+                    <i class="fas fa-ban"></i>
+                    <span>No racism or discrimination of any kind</span>
+                </li>
+                <li>
+                    <i class="fas fa-shield-virus"></i>
+                    <span>No sending viruses, malware, or harmful content</span>
+                </li>
+                <li>
+                    <i class="fas fa-comment-slash"></i>
+                    <span>No spamming or excessive self-promotion</span>
+                </li>
+                <li>
+                    <i class="fas fa-user-secret"></i>
+                    <span>Respect everyone's privacy</span>
+                </li>
+                <li>
+                    <i class="fas fa-handshake"></i>
+                    <span>Be kind and respectful to all members</span>
+                </li>
+                <li>
+                    <i class="fas fa-flag"></i>
+                    <span>Report any issues to admins immediately</span>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="admins">
+            <h2>Our Admins</h2>
+            <p>Meet the team that keeps CITRAQ running smoothly:</p>
+            
+            <div class="admin-grid">
+                <div class="admin-card">
+                    <img src="https://qu.ax/NNxES.jpeg" alt="Admin Zyann" class="admin-img">
+                    <div class="admin-info">
+                        <h3>Zyann</h3>
+                        <p>Owner citraq</p>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <img src="https://qu.ax/FedhR.jpeg" alt="Admin Danz" class="admin-img">
+                    <div class="admin-info">
+                        <h3>Danz-prst</h3>
+                        <p>Admin citraq</p>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <img src="https://qu.ax/dWEWc.jpeg" alt="Admin Renja" class="admin-img">
+                    <div class="admin-info">
+                        <h3>Renja-Zuu</h3>
+                        <p>Admin citraq</p>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <img src="https://qu.ax/BSesq.jpeg" alt="Admin vinncent" class="admin-img">
+                    <div class="admin-info">
+                        <h3>vinncent</h3>
+                        <p>Admin citraq</p>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <img src="https://qu.ax/TJdoP.jpeg" alt="Admin AL" class="admin-img">
+                    <div class="admin-info">
+                        <h3>AL</h3>
+                        <p>Admin citraq ( mondok )</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="audio">
+            <h2>Sound sleksi</h2>
+            
+            <div class="audio-player">
+                <h3>CITRAQ Sound</h3>
+                <audio controls>
+                    <source src="https://qu.ax/vbrDz.mpeg" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <a href="https://qu.ax/vbrDz.mpeg" class="download-btn" download>
+                    <i class="fas fa-download"></i> Download Audio
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <h3>CITRAQ Marga Selection</h3>
+            <p>Connecting heritage, building community</p>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+            
+            <p>&copy; 2025 CITRAQ. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animated member count
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Start animation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Change this to your actual member count
+            const memberCount = 28;
+            animateValue("memberCount", 0, memberCount, 2000);
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+        
+        // Responsive navigation for potential future expansion
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
